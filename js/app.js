@@ -8,6 +8,8 @@ const gastoListado = document.querySelector('#gastos ul');
 eventListener();
 function eventListener(){
     document.addEventListener('DOMContentLoaded', preguntarPresupuesto);
+
+    
 }
 
 
@@ -16,7 +18,28 @@ function eventListener(){
 
 //classes
 
+class Presupuesto {
+    constructor(presupuesto){
+        this.presupuesto = Number(presupuesto);
+        this.restante = Number(presupuesto);
+        this.gastos=[];
+    }
+}
 
+class UI{
+    insertarPresupuesto(cantidad){
+        //extrayendo el valor
+        const {presupuesto, restante } = cantidad;
+
+        //agregando al HTML
+        document.querySelector('#total').textContent = presupuesto;
+        document.querySelector('#total').textContent = restante;     
+    }
+}
+
+const ui=new UI();
+
+let presupuesto;
 
 
 //Funciones
@@ -28,4 +51,8 @@ function preguntarPresupuesto(){
         // preguntarPresupuesto(); 
         window.location.reload();
     }
+
+    presupuesto = new Presupuesto(presupuestoUsuario);
+    
+    ui.insertarPresupuesto(presupuesto); 
 }
